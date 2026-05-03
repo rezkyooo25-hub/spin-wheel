@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spin Wheel</title>
+<style>
+body { text-align:center; font-family:Arial; }
+canvas { margin-top:20px; }
+button { padding:10px 20px; font-size:18px; }
+</style>
+</head>
+<body>
+
+<h2>SPIN WHEEL</h2>
+<canvas id="canvas" width="400" height="400"></canvas>
+<br>
+<button onclick="spin()">SPIN</button>
+
+<script>
+const data = ["A","B","C","D","E","F"];
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function draw() {
+  let angle = 2 * Math.PI / data.length;
+  for(let i=0;i<data.length;i++){
+    ctx.beginPath();
+    ctx.moveTo(200,200);
+    ctx.arc(200,200,200,i*angle,(i+1)*angle);
+    ctx.fillStyle = i%2==0?"#4caf50":"#2196f3";
+    ctx.fill();
+  }
+}
+draw();
+
+function spin(){
+  let p = data[Math.floor(Math.random()*data.length)];
+  alert("Pemenang: " + p);
+}
+</script>
+
+</body>
+</html>
